@@ -13,6 +13,7 @@
 
 // Route::get('/', function () { return view('welcome'); });
 
-Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
+Route::get('/',     ['as' => 'home', 'uses' => 'PagesController@home']);
+Route::get('/home', ['as' => 'home', 'uses' => 'PagesController@home']);
 
 Route::resource('tasks', 'TasksController');
