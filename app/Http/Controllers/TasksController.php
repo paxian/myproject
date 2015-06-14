@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Task;
+use Session;
 
 class TasksController extends Controller
 {
@@ -26,7 +28,7 @@ class TasksController extends Controller
      */
     public function create()
     {
-        //
+        return view('tasks.create');
     }
 
     /**
@@ -34,9 +36,20 @@ class TasksController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+        //dd($request->all());
+
+        $this->validate($request, [
+          'title' => 'required',
+          'description' => 'required'
+          ]);
+
+        $input = $request->all();
+        Task::create($input);
+        Session::flash('flash_message', 'Task successfully added!');
+
+        return redirect()->back();
     }
 
     /**
