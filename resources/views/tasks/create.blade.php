@@ -41,4 +41,5 @@
 {!! Form::submit('Create New Task', ['class' => 'btn btn-primary']) !!}
 {!! Form::close() !!}
 
+<a href="/tasks" class="btn btn-warning">Cancel</a>
 @stop
