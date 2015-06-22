@@ -2,6 +2,12 @@
 
 @section('content')
 
+<h1>Edit Task -> {{ $task->title }} </h1>
+<p class="lead">
+  Edit this task below.
+  <a href="{{ route('tasks.index') }}">Go back (Alternative)</a>
+</p>
+
 @include('tasks.partials.alerts.errors')
 
 
@@ -11,29 +17,26 @@
   </div>
 @endif
 
-<h1>Add a New Task</h1>
-<p class="lead">
-  Add to your task list below
-</p>
+
+{!! Form::model($task, [
+    'method' => 'PATCH',
+    'route' => ['tasks.update', $task->id]
+]) !!}
 
 
 
-
-
-{!! Form::open([ 'route'=> 'tasks.store' ]) !!}
-
-  <div class="form-group">
+<div class="form-group">
     {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
     {!! Form::text('title', null, ['class' => 'form-control']) !!}
-  </div>
+</div>
 
-  <div class="form-group">
-    {!! Form::label('description', 'Description', ['class' => 'control-label']) !!}
+<div class="form-group">
+    {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}
     {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
-  </div>
+</div>
 
-{!! Form::submit('Create New Task', ['class' => 'btn btn-primary']) !!}
+{!! Form::submit('Update Task', ['class' => 'btn btn-primary']) !!}
+
 {!! Form::close() !!}
 
-<a href="/tasks" class="btn btn-warning">Cancel</a>
 @stop
